@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ror="http://richfaces.org/rich">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="allowClear" default="false"/>
+        <cc:attribute name="minimumInputLength" default="0"/>
+        <cc:attribute name="placeholder" default=""/>
+        <cc:attribute name="value" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:outputStylesheet library="select2" name="select2.css"/>
+        <h:outputScript name="jquery.js"/>
+        <h:outputScript library="select2" name="select2.js"/>
+        
+        <h:selectOneMenu id="e1" style="width:300px;" value="#{cc.attrs.value}" >
+            <cc:insertChildren/>
+        </h:selectOneMenu>
+        <script>
+            $(document).ready(function() {
+                e = #{ror:element('e1')};
+                $(e).select2({
+                    allowClear: #{cc.attrs.allowClear},
+                    minimumInputLength: #{cc.attrs.minimumInputLength},
+                    placeholder: '#{cc.attrs.placeholder}'
+                });
+            });            
+        </script>
+    </cc:implementation>
+</html>
