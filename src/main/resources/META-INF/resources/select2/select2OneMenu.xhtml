@@ -12,15 +12,17 @@
         <cc:attribute name="minimumInputLength" default="0"/>
         <cc:attribute name="placeholder" default=""/>
         <cc:attribute name="value" required="true"/>
+        <cc:attribute name="required" default="false"/>
+        <cc:attribute name="width" default="224"/>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:outputStylesheet library="select2" name="select2.css"/>
-        <h:outputScript name="jquery.js"/>
+<!--        Do not add JQuery, error on ajax requests -->
         <h:outputScript library="select2" name="select2.js"/>
         
-        <h:selectOneMenu id="e1" style="width:300px;" value="#{cc.attrs.value}" >
+        <h:selectOneMenu id="e1" style="width:#{cc.attrs.width}px;" value="#{cc.attrs.value}" required="#{cc.attrs.required}">
             <cc:insertChildren/>
         </h:selectOneMenu>
         <script>
