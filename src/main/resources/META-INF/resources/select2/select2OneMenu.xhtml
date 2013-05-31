@@ -3,32 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://java.sun.com/jsf/composite"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ror="http://richfaces.org/rich">
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    <!-- INTERFACE -->
+    <!-- INTERFACE --> 
     <cc:interface>
         <cc:attribute name="allowClear" default="false"/>
         <cc:attribute name="minimumInputLength" default="0"/>
         <cc:attribute name="placeholder" default=""/>
         <cc:attribute name="value" required="true"/>
+        <cc:attribute name="styleClass" default="select"/>
+        <cc:attribute name="style" />
         <cc:attribute name="required" default="false"/>
-        <cc:attribute name="width" default="224"/>
+        <!-- Allows to add ajax event change to select. in order to call listener. -->
+        <cc:clientBehavior name="change" event="change" targets="sel2" />
     </cc:interface>
-
-    <!-- IMPLEMENTATION -->
+    
+    <!-- IMPLEMENTATION --> 
     <cc:implementation>
+      <!-- Resources -->
+      <!-- Do not add JQuery, error on ajax requests -->
         <h:outputStylesheet library="select2" name="select2.css"/>
-<!--        Do not add JQuery, error on ajax requests -->
         <h:outputScript library="select2" name="select2.js"/>
         
-        <h:selectOneMenu id="e1" style="width:#{cc.attrs.width}px;" value="#{cc.attrs.value}" required="#{cc.attrs.required}">
+        <!-- Create the select -->
+        <h:selectOneMenu id="sel2" style="#{cc.attrs.style}" styleClass="#{cc.attrs.styleClass}" value="#{cc.attrs.value}" required="#{cc.attrs.required}">
             <cc:insertChildren/>
         </h:selectOneMenu>
+        
         <script>
             $(document).ready(function() {
-                e = #{ror:element('e1')};
-                $(e).select2({
+            <!-- find the element and apply select2 -->
+            <!-- could not find a more elegant way without external libraries-->
+            var id = "##{cc.clientId}:sel2".replace(/:/g,"\\:");
+                  $(id).select2({
                     allowClear: #{cc.attrs.allowClear},
                     minimumInputLength: #{cc.attrs.minimumInputLength},
                     placeholder: '#{cc.attrs.placeholder}'

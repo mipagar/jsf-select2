@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://java.sun.com/jsf/composite"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ror="http://richfaces.org/rich">
+      xmlns:f="http://java.sun.com/jsf/core" >
 
     <!-- INTERFACE -->
     <cc:interface>
@@ -12,27 +11,31 @@
         <cc:attribute name="placeholder" default=""/>
         <cc:attribute name="value" required="true"/>
         <cc:attribute name="required" default="false"/>
-        <cc:attribute name="width" default="224"/>
+        <cc:attribute name="styleClass" default="select"/>                                                                          
+        <cc:attribute name="style" />                                                                                               
+        <!-- Allows to add ajax event change to select. in order to call listener. -->                                              
+        <cc:clientBehavior name="change" event="change" targets="sel2" />     
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
-    <cc:implementation>
-        <h:outputStylesheet library="select2" name="select2.css"/>
-<!--        Do not add JQuery, error on ajax requests -->
-        <h:outputScript library="select2" name="select2.js"/>
+   <cc:implementation>
+      <!-- Resources -->
+      <h:outputStylesheet library="select2" name="select2.css"/>
+      <!-- Do not add JQuery, error on ajax requests -->
+      <h:outputScript library="select2" name="select2.js"/>
         
-        <h:selectManyMenu id="e2" style="width: #{cc.attrs.width}px;" required="#{cc.attrs.required}">
-            <cc:insertChildren/>
-        </h:selectManyMenu>
+      <h:selectManyMenu id="sel2" style="#{cc.attrs.tyle}" styleClass="#{cc.attrs.styleClass}"  required="#{cc.attrs.required}">
+         <cc:insertChildren/>
+      </h:selectManyMenu>
         
-        <script>
-            $(document).ready(function() {
-                e = #{ror:element('e2')};
-                $(e).select2({
-                    minimumInputLength: #{cc.attrs.minimumInputLength},
-                    placeholder: '#{cc.attrs.placeholder}'
-                });
-            });            
-        </script>
-    </cc:implementation>
+      <script>
+         $(document).ready(function() {
+            e = "##{cc.clientId}:sel2".replace(/:/g,"\\:");
+            $(e).select2({
+               minimumInputLength: #{cc.attrs.minimumInputLength},
+               placeholder: '#{cc.attrs.placeholder}'
+            });
+         });            
+      </script>
+   </cc:implementation>
 </html>
