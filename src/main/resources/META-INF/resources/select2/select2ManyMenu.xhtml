@@ -24,7 +24,8 @@
       <!-- Do not add JQuery, error on ajax requests -->
       <h:outputScript library="select2" name="select2.js"/>
         
-      <h:selectManyMenu id="sel2" style="#{cc.attrs.tyle}" styleClass="#{cc.attrs.styleClass}"  required="#{cc.attrs.required}">
+      <h:selectManyMenu id="sel2" style="#{cc.attrs.tyle}" styleClass="#{cc.attrs.styleClass}"  
+            value="#{cc.attrs.value}" required="#{cc.attrs.required}">
          <cc:insertChildren/>
       </h:selectManyMenu>
         
