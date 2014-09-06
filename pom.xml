@@ -22,11 +22,16 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
+    <scm>
+        <url>https://github.com/mipagar/jsf-select2</url>
+        <connection>scm:git:git@github.com:mipagar/jsf-select2.git</connection>
+    </scm>
   
     <distributionManagement>
         <repository>
             <id>billingstreet-private</id>
-            <url>http://nexus.billingstreet.com:8181/nexus/content/repositories/thirdparty/</url>
+            <url>http://nexus.billingstreet.com/nexus/content/repositories/thirdparty/</url>
         </repository>
     </distributionManagement>
 </project>
