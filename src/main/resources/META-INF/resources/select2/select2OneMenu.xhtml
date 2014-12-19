@@ -14,6 +14,7 @@
         <cc:attribute name="styleClass" default="select"/>
         <cc:attribute name="style" />
         <cc:attribute name="required" default="false"/>
+        <cc:attribute name="requiredMessage" default="input is required"/>
         <cc:editableValueHolder name="menu" targets="sel2"/>
         <!-- Allows to add ajax event change to select. in order to call listener. -->
         <cc:clientBehavior name="change" event="change" targets="sel2" />
@@ -27,7 +28,7 @@
         <h:outputScript library="select2" name="select2.js"/>
         
         <!-- Create the select -->
-        <h:selectOneMenu id="sel2" style="#{cc.attrs.style}" styleClass="#{cc.attrs.styleClass}" value="#{cc.attrs.value}" required="#{cc.attrs.required}">
+        <h:selectOneMenu id="sel2" style="#{cc.attrs.style}" styleClass="#{cc.attrs.styleClass}" value="#{cc.attrs.value}" required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}">
             <cc:insertChildren/>
         </h:selectOneMenu>
         
