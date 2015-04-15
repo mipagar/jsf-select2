@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd">
 
-    <namespace>http://www.mipagar.com/bs</namespace>
+    <namespace>http://mipagar.com/bs</namespace>
     <composite-library-name>select2</composite-library-name>
     
 </facelet-taglib>
